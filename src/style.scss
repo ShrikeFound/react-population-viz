@@ -2,7 +2,22 @@ $theme-color: #111032;
 $black: #001122;
 $white: #fffdfd;
 
+html,
+body,
+.App,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   background-color: $black;
   color: $white;
+}
+
+.population-scatter-plot {
+  border: 2px solid white;
+  width: 50%;
+  height: 50%;
+  background-color: grey;
 }
