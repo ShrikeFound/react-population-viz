@@ -12,7 +12,7 @@ const AxisX = ({ticks,xScale,padding,height}) => {
           transform={`translate (${xScale(val)} ${height-padding})`}
         >
           <line  y2={-(height-padding*2)}/>
-           <text y={5} dy=".72em" style={{textAnchor: "middle"}}>{val}</text>
+           <text y={5} dy=".82em" style={{textAnchor: "middle"}}>{val}</text>
         </g>
       )
     })
