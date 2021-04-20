@@ -17,16 +17,25 @@ body {
 
 .population-scatter-plot {
   border: 2px solid white;
-  width: 50%;
-  height: 50%;
-  background-color: grey;
+  width: 80%;
+  height: 80%;
 }
 
 .tick line {
-  stroke: rgba(0, 0, 0, 3);
-  stroke-width: 0;
+  // stroke: white;
+  // stroke-width: 2;
+}
+.tick text {
+  fill: white;
+}
+.tick:first-of-type line {
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke: #04d99d;
 }
 
-.tick:first-of-type line {
-  stroke-width: 3;
+.country-dots {
+  fill: rgba(4, 217, 157, 0.4);
+  stroke: white;
+  stroke-width: 2;
 }
