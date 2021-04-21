@@ -10,6 +10,8 @@ body,
 #root {
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -36,15 +38,15 @@ body {
   font-size: 20px;
 }
 .tick:first-of-type line {
-  stroke-width: 8;
+  stroke-width: 10;
   stroke-linecap: round;
   stroke: #04d99d;
 }
 
 .country-dots {
-  fill: rgba(4, 217, 157, 0.4);
-  stroke: white;
-  stroke-width: 2;
+  fill: rgba(4, 217, 157, 0.9);
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 5;
 }
 
 .tooltip {

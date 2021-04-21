@@ -1,9 +1,10 @@
-import { extent, max } from "d3-array";
+import { extent, max, min } from "d3-array";
 import { csv } from "d3-fetch";
 import { useEffect, useRef, useState } from "react";
+import Map from "./components/Map";
 import ScatterPlot from "./components/ScatterPlot";
 import Tooltip from "./components/Tooltip";
-
+import countryMap from './countries.json'
 
 function App() {
   const [data, setData] = useState([]);
@@ -12,10 +13,13 @@ function App() {
   const [minYear,maxYear] = extent(data,(d) => d["Year"])
   const tooltipRef = useRef();
 
+  console.log(countryMap)
+
+
   const [minFertilityRate,maxFertilityRate] = extent(data, d => d["Fertility Rate"])
   const [minLifeExpectancy, maxLifeExpectancy] = extent(data, d => Number(d["Life Expectancy"]))
 
-
+  const minVal = min(data, d => Number(d["Life Expectancy"]))
   const maxPopulation = max(data, d => d["Population"])
 
   const dataURL = "https://gist.githubusercontent.com/ShrikeFound/39a8fd3db574ec9f5d10074840c098bd/raw"
@@ -42,7 +46,14 @@ function App() {
       <h2 style={{ fontWeight: "300" }}>Year {year}</h2>
       <input type="range" min={minYear} max={maxYear} onChange={(e) => handleYearChange(e)} />
       
+      
+      <Map/>
+      
+      
       <Tooltip ref={tooltipRef} />
+
+
+
     </div>
   );
 }

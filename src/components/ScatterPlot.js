@@ -21,7 +21,7 @@ const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy
   const yScale = scaleLinear().domain([minLifeExpectancy,maxLifeExpectancy]).range([height-padding,padding])
   const yTicks = yScale.ticks()
 
-  const rScale = scaleSqrt().domain([0,maxPopulation]).range([2,13])
+  const rScale = scaleSqrt().domain([0,maxPopulation]).range([5,12])
   
   
   return (
