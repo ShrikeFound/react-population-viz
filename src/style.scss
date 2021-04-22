@@ -21,8 +21,9 @@ body {
   font-weight: 400;
 }
 
-.population-scatter-plot {
-  // border: 2px solid white;
+.population-scatter-plot,
+.population-bar-chart {
+  border: 2px solid white;
   margin: 0 auto;
   display: block;
   width: 80%;

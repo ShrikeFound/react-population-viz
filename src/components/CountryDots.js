@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CountryDots = ({ data, xScale, yScale, rScale,tooltipRef}) => {
+const CountryDots = ({ data, xScale, yScale, rScale,tooltipRef,setCountry}) => {
   const tooltip = document.getElementById("tooltip")
   const showTooltip = (e,el) => {
     tooltip.classList.add("show")
@@ -16,7 +16,7 @@ const CountryDots = ({ data, xScale, yScale, rScale,tooltipRef}) => {
 
   return (
     <g className="country-dots">
-      {data.map(d => <circle key={d["Entity"]} id={d["Entity"]} data-fertility-rate={d['Fertility Rate']} data-life-expectancy={ d["Life Expectancy"]}data-population={ d['Population']}onMouseMove={(e,el) =>showTooltip(e,el)} onMouseLeave={(e) => hideTooltip(e)} cx={xScale(d["Fertility Rate"])} cy={yScale(d["Life Expectancy"])} pop={d["Population"]}r={rScale(d["Population"])}/>)}
+      {data.map(d => <circle key={d["Entity"]} id={d["Entity"]} data-fertility-rate={d['Fertility Rate']} data-life-expectancy={d["Life Expectancy"]} data-population={d['Population']} onMouseMove={(e, el) => showTooltip(e, el)} onMouseLeave={(e) => hideTooltip(e)} cx={xScale(d["Fertility Rate"])} cy={yScale(d["Life Expectancy"])} pop={d["Population"]} r={rScale(d["Population"])} onClick={(e) => setCountry(e)}/>)}
     </g>
   )
 }

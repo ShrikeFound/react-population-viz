@@ -5,7 +5,7 @@ import AxisY from './AxisY';
 import CountryDots from './CountryDots';
 import Label from './Label';
 
-const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy,maxLifeExpectancy,maxPopulation,tooltipRef}) => {
+const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy,maxLifeExpectancy,maxPopulation,tooltipRef,setCountry}) => {
 
   if (!data) {
     return <p>Loading...</p>
@@ -36,7 +36,7 @@ const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy
         labelText="Fertility Rate"
       />
 
-      <g class="ticks">
+      <g className="ticks">
         <AxisY ticks={yTicks} yScale={yScale} padding={padding} width={width} />
       </g>
       <Label
@@ -47,7 +47,7 @@ const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy
       />
       
 
-      <CountryDots data={data} xScale={xScale} yScale={yScale} rScale={rScale} tooltipRef={tooltipRef} />
+      <CountryDots data={data} xScale={xScale} yScale={yScale} rScale={rScale} tooltipRef={tooltipRef} setCountry={setCountry}/>
 
       <Label
         x={width / 2}
