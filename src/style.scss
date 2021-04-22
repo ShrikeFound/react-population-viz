@@ -23,23 +23,23 @@ body {
 
 .population-scatter-plot,
 .population-bar-chart {
-  border: 2px solid white;
+  // border: 2px solid white;
   margin: 0 auto;
   display: block;
-  width: 80%;
+  max-width: 80%;
   height: 80%;
 }
 
 .tick line {
-  // stroke: white;
-  // stroke-width: 2;
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1;
 }
 .tick text {
   fill: white;
   font-size: 20px;
 }
 .tick:first-of-type line {
-  stroke-width: 10;
+  stroke-width: 8;
   stroke-linecap: round;
   stroke: #04d99d;
 }
@@ -47,7 +47,7 @@ body {
 .country-dots {
   fill: rgba(4, 217, 157, 0.9);
   stroke: rgba(255, 255, 255, 0.7);
-  stroke-width: 5;
+  stroke-width: 8;
 }
 
 .tooltip {

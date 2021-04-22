@@ -5,7 +5,7 @@ import AxisY from './AxisY';
 import CountryDots from './CountryDots';
 import Label from './Label';
 
-const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy,maxLifeExpectancy,maxPopulation,tooltipRef,setCountry}) => {
+const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy,maxLifeExpectancy,maxPopulation,tooltipRef,handleCountryChange}) => {
 
   if (!data) {
     return <p>Loading...</p>
@@ -14,40 +14,45 @@ const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy
 
   const height = 1200;
   const width = 1600;
-  const padding = 100;
+  const padding = 130;
+  const innerHeight = height - padding;
+  const innerWidth = width - padding;
 
-  const xScale = scaleLinear().domain([minFertilityRate, maxFertilityRate]).range([0, width - padding])
+  console.log(typeof minFertilityRate, typeof maxFertilityRate)
+  const xScale = scaleLinear().domain([minFertilityRate, maxFertilityRate]).nice().range([padding, innerWidth])
   const xTicks = xScale.ticks()
-  const yScale = scaleLinear().domain([minLifeExpectancy,maxLifeExpectancy]).range([height-padding,padding])
+  const yScale = scaleLinear().domain([minLifeExpectancy,maxLifeExpectancy]).nice().range([innerHeight,padding])
   const yTicks = yScale.ticks()
 
-  const rScale = scaleSqrt().domain([0,maxPopulation]).range([5,12])
+  const rScale = scaleSqrt().domain([0,maxPopulation]).range([5,16])
   
-  
+
   return (
     <svg className="population-scatter-plot" viewBox={`0 0 ${width} ${height}`}>
 
       <g className="ticks">
-        <AxisX ticks={xTicks} xScale={xScale} padding={padding} height={height} />
+        <AxisX ticks={xTicks} xScale={xScale} padding={padding} height={innerHeight} />
       </g>
       <Label
         x={width / 2}
-        y={height-30}
+        y={innerHeight+padding/3}
+        dy="1.2em"
         labelText="Fertility Rate"
       />
 
       <g className="ticks">
-        <AxisY ticks={yTicks} yScale={yScale} padding={padding} width={width} />
+        <AxisY ticks={yTicks} yScale={yScale} padding={padding} width={innerWidth} />
       </g>
       <Label
-        x={-padding}
+        x={padding/3}
         y={height / 2}
+        dy=".82em"
         rotate={true}
         labelText="Life Expectancy at Birth"
       />
       
 
-      <CountryDots data={data} xScale={xScale} yScale={yScale} rScale={rScale} tooltipRef={tooltipRef} setCountry={setCountry}/>
+      <CountryDots data={data} xScale={xScale} yScale={yScale} rScale={rScale} tooltipRef={tooltipRef} handleCountryChange={(e) =>handleCountryChange(e)}/>
 
       <Label
         x={width / 2}

@@ -1,4 +1,4 @@
-import { extent, max, min } from "d3-array";
+import { extent, max } from "d3-array";
 import { csv } from "d3-fetch";
 import { useEffect, useRef, useState } from "react";
 import BarChart from "./components/BarChart";
@@ -10,22 +10,27 @@ import countryMap from './countries.json'
 function App() {
   const [data, setData] = useState([]);
   const [yearData, setYearData] = useState([]);
+  const [countryData, setCountryData] = useState([]);
   const [year, setYear] = useState(1961);
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("USA");
   const [minYear,maxYear] = extent(data,(d) => d["Year"])
   const tooltipRef = useRef();
 
 
-  const [minFertilityRate,maxFertilityRate] = extent(data, d => d["Fertility Rate"])
-  const [minLifeExpectancy, maxLifeExpectancy] = extent(data, d => Number(d["Life Expectancy"]))
+  const [minFertilityRate,maxFertilityRate] = extent(data, d => +d["Fertility Rate"])
+  const [minLifeExpectancy, maxLifeExpectancy] = extent(data, d => +d["Life Expectancy"])
 
-  const minVal = min(data, d => Number(d["Life Expectancy"]))
   const maxPopulation = max(data, d => d["Population"])
 
   const dataURL = "https://gist.githubusercontent.com/ShrikeFound/39a8fd3db574ec9f5d10074840c098bd/raw"
   useEffect(() => {
-  csv(dataURL).then(setData)    
+    csv(dataURL).then(data => setData(data.sort((a, b) => {
+      return  +b['Population'] - +a['Population']
+
+    })))
   }, [])
+  console.log(data)
+  //get yearly data for scatter plot
   useEffect(() => {
     if (data) {
       const newYearData = data.filter(d => {
@@ -34,7 +39,18 @@ function App() {
       setYearData(newYearData)
      }
 
-  }, [data,year])
+  }, [data, year])
+  
+  //get country data for bar chart
+  useEffect(() => {
+    if (data) {
+      const newCountryData = data.filter(d => {
+        return d["Entity"] == country
+      })
+      setCountryData(newCountryData)
+     }
+
+  }, [data,country])
 
   const handleYearChange = (e) => {
     const newYear = e.target.value
@@ -43,18 +59,18 @@ function App() {
 
 
   const handleCountryChange = (e) => {
-    console.log("I'm in here")
-    console.log(e)
+    const newCountry = e.target.id
+    setCountry(newCountry)
   }
 
   return (
     <div className="App">
-      <ScatterPlot data={yearData} tooltipRef={tooltipRef} minFertilityRate={minFertilityRate} maxFertilityRate={maxFertilityRate} setCountry={setCountry} maxLifeExpectancy={maxLifeExpectancy} minLifeExpectancy={minLifeExpectancy} maxPopulation={maxPopulation}/>
+      <ScatterPlot data={yearData} tooltipRef={tooltipRef} minFertilityRate={minFertilityRate} maxFertilityRate={maxFertilityRate} handleCountryChange={(e) => handleCountryChange(e)} maxLifeExpectancy={maxLifeExpectancy} minLifeExpectancy={minLifeExpectancy} maxPopulation={maxPopulation}/>
       <h2 style={{ fontWeight: "300" }}>Year {year}</h2>
       <input type="range" min={minYear} max={maxYear} onChange={(e) => handleYearChange(e)} />
       
       
-      <Map />
+      {country}
       <BarChart country={country}/>
       
       
