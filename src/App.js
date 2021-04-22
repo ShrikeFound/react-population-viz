@@ -47,7 +47,10 @@ function App() {
       const newCountryData = data.filter(d => {
         return d["Entity"] == country
       })
-      setCountryData(newCountryData)
+      setCountryData(newCountryData.sort((a, b) => {
+        console.log(+a['Year'] - +b['Year'])
+        return +a['Year'] - +b['Year']
+      }))
      }
 
   }, [data,country])
@@ -65,15 +68,19 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Exploring Country Population</h1>
+      <div className="dashboard">
       <ScatterPlot data={yearData} tooltipRef={tooltipRef} minFertilityRate={minFertilityRate} maxFertilityRate={maxFertilityRate} handleCountryChange={(e) => handleCountryChange(e)} maxLifeExpectancy={maxLifeExpectancy} minLifeExpectancy={minLifeExpectancy} maxPopulation={maxPopulation}/>
-      <h2 style={{ fontWeight: "300" }}>Year {year}</h2>
-      <input type="range" min={minYear} max={maxYear} onChange={(e) => handleYearChange(e)} />
       
+        <div className="year-input">
+        <h2 style={{ fontWeight: "300" }}>Year {year}</h2>
+      <input type="range" min={minYear} max={maxYear} onChange={(e) => handleYearChange(e)} />    
+      </div>
       
       {country}
-      <BarChart country={country}/>
+      <BarChart country={country} data={countryData}/>
       
-      
+      </div>
       <Tooltip ref={tooltipRef} />
 
 
