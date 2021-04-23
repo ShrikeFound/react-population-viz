@@ -68,13 +68,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Exploring Country Population</h1>
+      <h1 className="title">Exploring Country Population</h1>
       <div className="dashboard">
       <ScatterPlot data={yearData} tooltipRef={tooltipRef} minFertilityRate={minFertilityRate} maxFertilityRate={maxFertilityRate} handleCountryChange={(e) => handleCountryChange(e)} maxLifeExpectancy={maxLifeExpectancy} minLifeExpectancy={minLifeExpectancy} maxPopulation={maxPopulation}/>
       
-        <div className="year-input">
+      <div className="year-input">
         <h2 style={{ fontWeight: "300" }}>Year {year}</h2>
-      <input type="range" min={minYear} max={maxYear} onChange={(e) => handleYearChange(e)} />    
+        <input type="range" min={minYear} max={maxYear} onChange={(e) => handleYearChange(e)} />    
       </div>
       
       {country}

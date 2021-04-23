@@ -22,7 +22,15 @@ const BarChart = ({ country,data }) => {
   // const yTicks = yScale.ticks()
   const xScale = scaleLinear().domain([0, width]).nice().range([padding, innerWidth])
   const yScale = scaleLinear().domain([minCountryPopulation, maxCountryPopulation]).nice().range([padding,innerHeight])
-
+  if (data.length < 1) {
+    return (
+      <svg className="population-bar-chart" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
+        <text className="loading-text label"  text-anchor="middle"transform={`translate( ${innerWidth/2} ${innerHeight/2-40})`}>Click on a country's dot</text>
+        <text className="loading-text label" text-anchor="middle" transform={`translate( ${innerWidth/2} ${innerHeight/2})`}>to view their population growth </text>
+        <text className="loading-text label" text-anchor="middle" transform={`translate( ${innerWidth/2} ${innerHeight/2+40})`}>throughout the years</text>
+    </svg>
+    )
+  }
   return (
     <svg className="population-bar-chart" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
       <Bars data={data} height={innerHeight} xScale={xScale} yScale={yScale} barWidth={barWidth} barPadding={barPadding} padding={padding}/>
