@@ -29,7 +29,6 @@ function App() {
 
     })))
   }, [])
-  console.log(data)
   //get yearly data for scatter plot
   useEffect(() => {
     if (data) {
@@ -48,7 +47,6 @@ function App() {
         return d["Entity"] == country
       })
       setCountryData(newCountryData.sort((a, b) => {
-        console.log(+a['Year'] - +b['Year'])
         return +a['Year'] - +b['Year']
       }))
      }
@@ -68,18 +66,24 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title">Exploring Country Population</h1>
+      <h1 className="title">Country Metric Dashboard</h1>
       <div className="dashboard">
-      <ScatterPlot data={yearData} tooltipRef={tooltipRef} minFertilityRate={minFertilityRate} maxFertilityRate={maxFertilityRate} handleCountryChange={(e) => handleCountryChange(e)} maxLifeExpectancy={maxLifeExpectancy} minLifeExpectancy={minLifeExpectancy} maxPopulation={maxPopulation}/>
-      
-      <div className="year-input">
-        <h2 style={{ fontWeight: "300" }}>Year {year}</h2>
-        <input type="range" min={minYear} max={maxYear} onChange={(e) => handleYearChange(e)} />    
-      </div>
-      
-      {country}
-      <BarChart country={country} data={countryData}/>
-      
+        
+        <div className="scatterplot-container">
+          <ScatterPlot data={yearData} country={country} tooltipRef={tooltipRef} minFertilityRate={minFertilityRate} maxFertilityRate={maxFertilityRate} handleCountryChange={(e) => handleCountryChange(e)} maxLifeExpectancy={maxLifeExpectancy} minLifeExpectancy={minLifeExpectancy} maxPopulation={maxPopulation} />
+        </div>
+        
+        <div className="year-input">
+          <p>This dashboard is inspired Hans Rosling's first TED talk and explores many of the same areas using modern data: Country population growth, life expectancy, and fertility rates (Short life Big family vs. Long life Small family). </p>
+          <p> Take a look at the UN's most recent data on history country growth and explore the relationship between these metrics yourself. Use the slider below to travel through time and click on a country's dot to view their data on the chart below.</p>
+          <h2 style={{ fontWeight: "400" }}>Year: {year}</h2>
+          <input type="range" min={minYear} max={maxYear} onChange={(e) => handleYearChange(e)} />
+        </div>
+        
+        <div className="barchart-container">
+          <BarChart country={country} data={countryData} />
+        </div>
+        
       </div>
       <Tooltip ref={tooltipRef} />
 

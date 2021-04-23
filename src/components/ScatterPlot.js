@@ -5,7 +5,7 @@ import AxisY from './AxisY';
 import CountryDots from './CountryDots';
 import Label from './Label';
 
-const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy,maxLifeExpectancy,maxPopulation,tooltipRef,handleCountryChange}) => {
+const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy,maxLifeExpectancy,maxPopulation,tooltipRef,handleCountryChange,country}) => {
 
   if (!data) {
     return <p>Loading...</p>
@@ -18,7 +18,6 @@ const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy
   const innerHeight = height - padding;
   const innerWidth = width - padding;
 
-  console.log(typeof minFertilityRate, typeof maxFertilityRate)
   const xScale = scaleLinear().domain([minFertilityRate, maxFertilityRate]).nice().range([padding, innerWidth])
   const xTicks = xScale.ticks()
   const yScale = scaleLinear().domain([minLifeExpectancy,maxLifeExpectancy]).nice().range([innerHeight,padding])
@@ -52,7 +51,7 @@ const ScatterPlot = ({ data,minFertilityRate, maxFertilityRate,minLifeExpectancy
       />
       
 
-      <CountryDots data={data} xScale={xScale} yScale={yScale} rScale={rScale} tooltipRef={tooltipRef} handleCountryChange={(e) =>handleCountryChange(e)}/>
+      <CountryDots country={country} data={data} xScale={xScale} yScale={yScale} rScale={rScale} tooltipRef={tooltipRef} handleCountryChange={(e) =>handleCountryChange(e)}/>
 
       <Label
         x={width / 2}
