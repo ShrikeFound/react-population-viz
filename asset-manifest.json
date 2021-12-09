@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/react-population-viz/static/css/main.3a271ce1.chunk.css",
-    "main.js": "/react-population-viz/static/js/main.d8d33ead.chunk.js",
-    "main.js.map": "/react-population-viz/static/js/main.d8d33ead.chunk.js.map",
+    "main.js": "/react-population-viz/static/js/main.6ddc124a.chunk.js",
+    "main.js.map": "/react-population-viz/static/js/main.6ddc124a.chunk.js.map",
     "runtime-main.js": "/react-population-viz/static/js/runtime-main.a00560b7.js",
     "runtime-main.js.map": "/react-population-viz/static/js/runtime-main.a00560b7.js.map",
-    "static/js/2.ff9a36df.chunk.js": "/react-population-viz/static/js/2.ff9a36df.chunk.js",
-    "static/js/2.ff9a36df.chunk.js.map": "/react-population-viz/static/js/2.ff9a36df.chunk.js.map",
+    "static/js/2.86e3212c.chunk.js": "/react-population-viz/static/js/2.86e3212c.chunk.js",
+    "static/js/2.86e3212c.chunk.js.map": "/react-population-viz/static/js/2.86e3212c.chunk.js.map",
     "index.html": "/react-population-viz/index.html",
     "static/css/main.3a271ce1.chunk.css.map": "/react-population-viz/static/css/main.3a271ce1.chunk.css.map",
-    "static/js/2.ff9a36df.chunk.js.LICENSE.txt": "/react-population-viz/static/js/2.ff9a36df.chunk.js.LICENSE.txt"
+    "static/js/2.86e3212c.chunk.js.LICENSE.txt": "/react-population-viz/static/js/2.86e3212c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a00560b7.js",
-    "static/js/2.ff9a36df.chunk.js",
+    "static/js/2.86e3212c.chunk.js",
     "static/css/main.3a271ce1.chunk.css",
-    "static/js/main.d8d33ead.chunk.js"
+    "static/js/main.6ddc124a.chunk.js"
   ]
 }
